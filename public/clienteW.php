@@ -2,7 +2,8 @@
 // llamadas a todas las funciones definidas en el servicio
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$wsdl = 'http://localhost/e_servidor/servicio_web_SOAP/servidorSoap/servicio.wsdl';
+$config = require __DIR__ . '/../config/config.php';
+$wsdl = $config['wsdlUrl'];
 
 try {
     $client = new SoapClient($wsdl);

@@ -2,9 +2,11 @@
 // llamadas a todas las funciones definidas en el servicio
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$config = require __DIR__ . '/../config/config.php';
+
 $options = [
-    'location' => 'http://localhost/e_servidor/servicio_web_SOAP/servidorSoap/servicio.php',
-    'uri' => 'http://localhost/servicio',
+    'location' => $config['soapUrl'],
+    'uri' => $config['baseUrl'] . '/servicio',
 ];
 
 try {
@@ -34,4 +36,3 @@ $productos = $client->getProductosFamilia('TV');
 print_r($productos);
 echo "\n";
 echo "</pre>";
-

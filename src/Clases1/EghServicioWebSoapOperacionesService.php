@@ -9,7 +9,7 @@ class EghServicioWebSoapOperacionesService extends \SoapClient
      * @var array $classmap The defined classes
      */
     private static $classmap = array (
-);
+    );
 
     /**
      * @param array $options A array of config values
@@ -17,17 +17,17 @@ class EghServicioWebSoapOperacionesService extends \SoapClient
      */
     public function __construct(array $options = array(), $wsdl = null)
     {
-    
-  foreach (self::$classmap as $key => $value) {
-    if (!isset($options['classmap'][$key])) {
-      $options['classmap'][$key] = $value;
-    }
-  }
+      foreach (self::$classmap as $key => $value) {
+        if (!isset($options['classmap'][$key])) {
+          $options['classmap'][$key] = $value;
+        }
+      }
       $options = array_merge(array (
-  'features' => 1,
-), $options);
+      'features' => 1,
+    ), $options);
       if (!$wsdl) {
-        $wsdl = 'http://localhost/e_servidor/servicio_web_SOAP/servidorSoap/servicio.wsdl';
+        $config = require dirname(dirname(__DIR__)) . '/config/config.php';
+        $wsdl = $config['wsdlUrl'];
       }
       parent::__construct($wsdl, $options);
     }

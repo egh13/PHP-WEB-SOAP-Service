@@ -15,9 +15,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Wsdl2PhpGenerator\Generator;
 use Wsdl2PhpGenerator\Config;
 
+$configApp = require __DIR__ . '/../config/config.php';
+
 $generator = new Generator();
 
-$wsdlUrl = 'http://localhost/e_servidor/servicio_web_SOAP/servidorSoap/servicio.wsdl';
+$wsdlUrl = $configApp['wsdlUrl'];
 
 $generator->generate(new Config([
     'inputFile' => $wsdlUrl,

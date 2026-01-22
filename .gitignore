@@ -1,0 +1,27 @@
+# Entorno
+.env
+.env.local
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencias
+vendor/
+node_modules/
+
+# Archivos generados
+/src/Clases1/*.php
+!.gitkeep
+
+# Logs
+*.log
+
+# Temporales
+tmp/
+temp/
+cache/

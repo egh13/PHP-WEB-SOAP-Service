@@ -1,115 +1,26 @@
-# Servicio Web SOAP - Documentación
+# Servicio Web SOAP
 
-## 📋 Descripción
+Servicio web SOAP para gestionar productos, familias, stocks y precios.
 
-Aplicación de servicio web SOAP que proporciona operaciones para gestionar información de productos, familias, stocks y precios. Incluye un servidor SOAP que expone operaciones a través de WSDL y clientes PHP para consumir el servicio.
+## 📋 Requisitos
 
----
+- PHP >= 7.4
+- MySQL/MariaDB
+- Composer
+- Servidor web (Apache/Nginx)
 
-## 📦 Librerías Utilizadas
-
-### Dependencias Principales
-
-Este proyecto utiliza las siguientes librerías de PHP:
-
-| Librería | Versión | Descripción |
-|----------|---------|-------------|
-| **PHP SOAP** | Nativa (>=7.4) | Extensión nativa de PHP para crear servidores y clientes SOAP |
-| **Composer** | - | Gestor de dependencias de PHP |
-
-### Dependencias de Desarrollo
-
-| Librería | Versión | Descripción |
-|----------|---------|-------------|
-| **wsdl2phpgenerator** | ^3.4 | Generador de clases PHP a partir de archivos WSDL |
-| **php2wsdl** | ^0.7.0 | Generador de archivos WSDL a partir de clases PHP |
-
-
---
-
-## 📁 Estructura del Proyecto
-
-```
-servicio_web_SOAP/
-├── composer.json                 # Configuración de dependencias
-├── README.md                     # Este archivo
-├── config/
-│   └── dbconfig.json            # Configuración de base de datos
-├── public/                      # Archivos accesibles desde web
-│   ├── cliente.php              # Cliente SOAP básico (SoapClient directo)
-│   ├── clienteW.php             # Cliente SOAP corregido con manejo de errores
-│   ├── clienteW2.php            # Cliente SOAP usando clase generada
-│   ├── generarClases.php        # Script para generar clases PHP desde WSDL
-│   └── generarWsdl.php          # Script para generar WSDL desde clases PHP
-├── servidorSoap/
-│   ├── servicio.php             # Servidor SOAP básico
-│   ├── servicioW.php            # Servidor SOAP con WSDL
-│   └── servicio.wsdl            # Descripción WSDL del servicio
-├── src/                         # Código fuente principal
-│   ├── DBconnection.php         # Clase de conexión a base de datos
-│   ├── Familia.php              # Modelo de Familia
-│   ├── Operaciones.php          # Clase con operaciones del servicio
-│   ├── Producto.php             # Modelo de Producto
-│   ├── Stock.php                # Modelo de Stock
-│   └── Clases1/                 # Clases generadas a partir del WSDL
-│       ├── autoload.php         # Autocargador personalizado
-│       ├── Client.php           # Cliente SOAP generado
-│       └── EghServicioWebSoapOperacionesService.php
-└── vendor/                      # Librerías instaladas por Composer
-    ├── autoload.php
-    ├── composer/
-    ├── php2wsdl/
-    ├── symfony/
-    ├── wingu/
-    └── wsdl2phpgenerator/
-```
-
----
-
-## 🚀 Instalación y Configuración
-
-### 1. Requisitos Previos
-
-- **PHP 7.4 o superior**
-- **Apache/Nginx** con mod_rewrite
-- **MySQL** o base de datos compatible
-- **Composer** instalado globalmente
-
-**Verificar versión de PHP:**
-```bash
-php --version
-```
-
-**Verificar Composer:**
-```bash
-composer --version
-```
-
-### 2. Instalación de Dependencias
-
-Clona o descarga el proyecto en tu servidor web:
+## 🚀 Instalación
 
 ```bash
-cd c:\wamp64\www\e_servidor\servicio_web_SOAP
-```
+# 1. Clonar el proyecto
+git clone <tu-repo>
+cd PHP-WEB-SOAP-Service
 
-Instala las dependencias con Composer:
-
-```bash
+# 2. Instalar dependencias
 composer install
-```
 
-O si necesitas actualizar las dependencias:
-
-```bash
-composer update
-```
-
-### 3. Configuración de Base de Datos
-
-Edita el archivo `config/dbconfig.json`:
-
-```json
+# 3. Configurar BD (opcional)
+# Edita config/dbconfig.json si necesitas otros valores:
 {
     "host": "localhost",
     "db": "tarea6",
@@ -118,39 +29,100 @@ Edita el archivo `config/dbconfig.json`:
 }
 ```
 
-## 🔧 Uso de la Aplicación
+## 🌐 Acceso
 
-### A. Generación del WSDL desde Clases PHP
+- Cliente básico: `http://localhost/PHP-WEB-SOAP-Service/public/cliente.php`
+- Cliente WSDL: `http://localhost/PHP-WEB-SOAP-Service/public/clienteW.php`
+- WSDL: `http://localhost/PHP-WEB-SOAP-Service/servidorSoap/servicio.wsdl`
 
-Para generar el archivo WSDL que describe el servicio:
+## 📁 Estructura
 
-**Desde el navegador:**
 ```
-http://localhost/e_servidor/servicio_web_SOAP/public/generarWsdl.php
+├── config/
+│   ├── config.php         # Configuración dinámica de URLs
+│   └── dbconfig.json      # Configuración de BD
+├── public/
+│   ├── cliente.php        # Cliente SOAP básico
+│   ├── clienteW.php       # Cliente con WSDL
+│   └── generarWsdl.php    # Generar WSDL
+├── servidorSoap/
+│   ├── servicio.php       # Servidor SOAP
+│   └── servicio.wsdl      # Definición WSDL
+└── src/
+    ├── Operaciones.php    # Operaciones principales
+    ├── Producto.php       # Modelo Producto
+    ├── Familia.php        # Modelo Familia
+    └── Stock.php          # Modelo Stock
 ```
 
-**Desde terminal:**
+## 🔧 Configuración
+
+### Base de Datos
+Edita `config/dbconfig.json`:
+```json
+{
+    "host": "tu-servidor",
+    "db": "tu-bd",
+    "user": "usuario",
+    "pass": "contraseña"
+}
+```
+
+### URLs
+Automáticamente detecta:
+- ✅ HTTP/HTTPS
+- ✅ Host/dominio
+- ✅ Ruta del proyecto
+
+## 📦 Dependencias
+
+- **PHP SOAP** - Extensión nativa para SOAP
+- **php2wsdl** ^0.7.0 - Generar WSDL desde clases
+- **wsdl2phpgenerator** ^3.4 - Generar clases desde WSDL
+
+## 💡 Uso
+
+### 1. Generar WSDL
 ```bash
 php public/generarWsdl.php
 ```
 
-**Resultado:** Se actualiza/crea el archivo `servidorSoap/servicio.wsdl`
-
-### B. Generación de Clases desde WSDL
-
-Para generar automáticamente clases PHP que representan el servicio SOAP:
-
-**Desde el navegador:**
-```
-http://localhost/e_servidor/servicio_web_SOAP/public/generarClases.php
-```
-
-**Desde terminal:**
+### 2. Generar Clases desde WSDL
 ```bash
-cd C:\wamp64\www\e_servidor\servicio_web_SOAP
 php public/generarClases.php
 ```
 
-**Resultado:** Se crea la clase `Client.php` en `src/Clases1/`
+### 3. Usar el Cliente SOAP
+```bash
+php public/cliente.php
+```
 
+## 🔗 Operaciones del Servicio
 
+El servicio SOAP expone:
+
+- `getPVP(codigoProducto)` - Obtener precio
+- `getStock(codigoProducto, codigoTienda)` - Obtener stock
+- `getFamilias()` - Listar familias de productos
+- `getProductosFamilia(familia)` - Productos por familia
+
+## 📝 Ejemplo
+
+```php
+$config = require __DIR__ . '/../config/config.php';
+
+$options = [
+    'location' => $config['soapUrl'],
+    'uri' => $config['baseUrl'] . '/servicio',
+];
+
+$client = new SoapClient(null, $options);
+$pvp = $client->getPVP(1);
+echo "PVP: $pvp";
+```
+
+## ⚙️ Notas
+
+- Las URLs se detectan automáticamente (HTTP/HTTPS, host, ruta)
+- La BD se configura en `config/dbconfig.json`
+- Los archivos autogenerados están en `src/Clases1/`
