@@ -16,10 +16,7 @@ Servicio web SOAP para gestionar productos, familias, stocks y precios.
 git clone <tu-repo>
 cd PHP-WEB-SOAP-Service
 
-# 2. Instalar dependencias
-composer install
-
-# 3. Configurar BD (opcional)
+# 2. Configurar BD (opcional)
 # Edita config/dbconfig.json si necesitas otros valores:
 {
     "host": "localhost",
@@ -28,13 +25,6 @@ composer install
     "pass": "alumno"
 }
 ```
-
-## 🌐 Acceso
-
-- Cliente básico: `http://localhost/PHP-WEB-SOAP-Service/public/cliente.php`
-- Cliente WSDL: `http://localhost/PHP-WEB-SOAP-Service/public/clienteW.php`
-- WSDL: `http://localhost/PHP-WEB-SOAP-Service/servidorSoap/servicio.wsdl`
-
 ## 📁 Estructura
 
 ```
@@ -48,11 +38,14 @@ composer install
 ├── servidorSoap/
 │   ├── servicio.php       # Servidor SOAP
 │   └── servicio.wsdl      # Definición WSDL
+├── vendor/
+|    ...
 └── src/
     ├── Operaciones.php    # Operaciones principales
     ├── Producto.php       # Modelo Producto
     ├── Familia.php        # Modelo Familia
     └── Stock.php          # Modelo Stock
+
 ```
 
 ## 🔧 Configuración
@@ -67,12 +60,6 @@ Edita `config/dbconfig.json`:
     "pass": "contraseña"
 }
 ```
-
-### URLs
-Automáticamente detecta:
-- ✅ HTTP/HTTPS
-- ✅ Host/dominio
-- ✅ Ruta del proyecto
 
 ## 📦 Dependencias
 
@@ -92,11 +79,6 @@ php public/generarWsdl.php
 php public/generarClases.php
 ```
 
-### 3. Usar el Cliente SOAP
-```bash
-php public/cliente.php
-```
-
 ## 🔗 Operaciones del Servicio
 
 El servicio SOAP expone:
@@ -105,21 +87,6 @@ El servicio SOAP expone:
 - `getStock(codigoProducto, codigoTienda)` - Obtener stock
 - `getFamilias()` - Listar familias de productos
 - `getProductosFamilia(familia)` - Productos por familia
-
-## 📝 Ejemplo
-
-```php
-$config = require __DIR__ . '/../config/config.php';
-
-$options = [
-    'location' => $config['soapUrl'],
-    'uri' => $config['baseUrl'] . '/servicio',
-];
-
-$client = new SoapClient(null, $options);
-$pvp = $client->getPVP(1);
-echo "PVP: $pvp";
-```
 
 ## ⚙️ Notas
 
