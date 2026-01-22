@@ -16,7 +16,11 @@ Servicio web SOAP para gestionar productos, familias, stocks y precios.
 git clone <tu-repo>
 cd PHP-WEB-SOAP-Service
 
-# 2. Configurar BD (opcional)
+# 2. Crear la Base de Datos
+mysql -u root -p < mysql/DBcreation.sql
+mysql -u root -p < mysql/DBinserts.sql
+
+# 3. Configurar conexión BD (opcional)
 # Edita config/dbconfig.json si necesitas otros valores:
 {
     "host": "localhost",
@@ -31,21 +35,28 @@ cd PHP-WEB-SOAP-Service
 ├── config/
 │   ├── config.php         # Configuración dinámica de URLs
 │   └── dbconfig.json      # Configuración de BD
+├── mysql/
+│   ├── DBcreation.sql     # Script crear tablas
+│   └── DBinserts.sql      # Script insertar datos
 ├── public/
+|   ├── index.php          # Index a clientes
 │   ├── cliente.php        # Cliente SOAP básico
 │   ├── clienteW.php       # Cliente con WSDL
-│   └── generarWsdl.php    # Generar WSDL
+│   ├── clienteW2.php      # Cliente con clases generadas
+│   ├── generarWsdl.php    # Generar WSDL
+│   └── generarClases.php  # Generar clases desde WSDL
 ├── servidorSoap/
 │   ├── servicio.php       # Servidor SOAP
+│   ├── servicioW.php      # Servidor SOAP con WSDL
 │   └── servicio.wsdl      # Definición WSDL
-├── vendor/
-|    ...
-└── src/
-    ├── Operaciones.php    # Operaciones principales
-    ├── Producto.php       # Modelo Producto
-    ├── Familia.php        # Modelo Familia
-    └── Stock.php          # Modelo Stock
-
+├── src/
+│   ├── DBconnection.php   # Conexión BD
+│   ├── Operaciones.php    # Operaciones principales
+│   ├── Producto.php       # Modelo Producto
+│   ├── Familia.php        # Modelo Familia
+│   ├── Stock.php          # Modelo Stock
+│   └── Clases1/           # Clases autogeneradas
+└── vendor/                # Dependencias Composer
 ```
 
 ## 🔧 Configuración
@@ -69,14 +80,30 @@ Edita `config/dbconfig.json`:
 
 ## 💡 Uso
 
-### 1. Generar WSDL
+### Base de Datos
+Los scripts SQL están en `mysql/`:
+- **DBcreation.sql** - Crea la BD y las 4 tablas (tiendas, familias, productos, stocks)
+- **DBinserts.sql** - Inserta 26 productos, 15 familias y 3 tiendas
+
+Ejecutar una sola vez:
+```bash
+mysql -u root -p < mysql/DBcreation.sql
+mysql -u root -p < mysql/DBinserts.sql
+```
+
+### Generar WSDL desde Clases PHP
 ```bash
 php public/generarWsdl.php
 ```
 
-### 2. Generar Clases desde WSDL
+### Generar Clases desde WSDL
 ```bash
 php public/generarClases.php
+```
+
+### Usar Cliente SOAP
+```bash
+php public/cliente.php
 ```
 
 ## 🔗 Operaciones del Servicio
