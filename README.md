@@ -1,5 +1,8 @@
 # Servicio Web SOAP
 
+![PHP](https://img.shields.io/badge/PHP-8.2-blue)
+![Composer](https://img.shields.io/badge/Composer-Installed-green)
+
 Servicio web SOAP para gestionar productos, familias, stocks y precios.
 
 ## 📋 Requisitos
