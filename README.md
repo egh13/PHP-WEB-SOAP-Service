@@ -92,19 +92,12 @@ mysql -u root -p < mysql/DBinserts.sql
 ```
 
 ### Generar WSDL desde Clases PHP
-```bash
-php public/generarWsdl.php
-```
+
+Ejecutar script `public/generarWsdl.php` en el navegador. Debe crear el archivo `servicio.wsdl`
 
 ### Generar Clases desde WSDL
-```bash
-php public/generarClases.php
-```
 
-### Usar Cliente SOAP
-```bash
-php public/cliente.php
-```
+Ejecutar script `public/generarClases.php` en el navegador. Debe crear las clases en `src/Clases1`
 
 ## 🔗 Operaciones del Servicio
 
