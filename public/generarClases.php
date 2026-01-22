@@ -30,4 +30,5 @@ $generator->generate(new Config([
     'namespaceName' => 'Egh\\ServicioWebSoap\\Clases1',
 ]));
 
+header("Location: index.php");
 

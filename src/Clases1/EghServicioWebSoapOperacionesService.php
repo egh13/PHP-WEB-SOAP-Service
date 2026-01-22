@@ -26,8 +26,7 @@ class EghServicioWebSoapOperacionesService extends \SoapClient
       'features' => 1,
     ), $options);
       if (!$wsdl) {
-        $config = require dirname(dirname(__DIR__)) . '/config/config.php';
-        $wsdl = $config['wsdlUrl'];
+        $wsdl = 'http://localhost/e_servidor/PHP-WEB-SOAP-Service/servidorSoap/servicio.wsdl';
       }
       parent::__construct($wsdl, $options);
     }

@@ -14,6 +14,21 @@ echo <<<HTML
 <div class="container py-5">
     <h1 class="mb-4 text-center">Clientes SOAP</h1>
 
+    <!-- Sección de Herramientas -->
+    <div class="alert alert-info mb-4" role="alert">
+        <h4 class="alert-heading">⚙️ Herramientas</h4>
+        <p>Ejecuta estos scripts para generar el WSDL y las clases:</p>
+        <div class="btn-group" role="group">
+            <a href="generarWsdl.php" target="_blank" class="btn btn-warning">
+                <strong>Generar WSDL</strong>
+            </a>
+            <a href="generarClases.php" target="_blank" class="btn btn-success">
+                <strong>Generar Clases</strong>
+            </a>
+        </div>
+    </div>
+
+    <h2 class="mb-3">Clientes Disponibles</h2>
     <div class="row g-4">
 
         <div class="col-md-4">
